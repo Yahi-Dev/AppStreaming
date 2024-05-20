@@ -1,0 +1,57 @@
+﻿@model Application.ViewModels.ViewContenidoViewModel
+@{
+    ViewData["Title"] = "VerContenido";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/ViewContenido.css" />
+</head>
+
+<div class="container-fluid">
+
+<div class="tv-container mx-auto text-center">
+       <iframe width="560" height="315" src="@Model.VideoSerie" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<br/>
+<br />
+<h3><strong>Informacion del contenido</strong></h3>
+<div>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col" class="table-info">@Model.Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                    <th scope="row" class="table-info">Contenido</th>
+                <td>@Model.ModeSerie</td>
+            </tr>
+            <tr>
+                <th scope="row">Fecha de Salida</th>
+                    <td class="table-info">@Model.FechaSalida</td>
+            </tr>
+            <tr>
+                    <th scope="row" class="table-info">Genero primario</th>
+                <td>@Model.Gen1</td>
+            </tr>
+            <tr>
+                <th scope="row">Genero secundario</th>
+                    <td class="table-info">@Model.Gen2</td>
+            </tr>
+            <tr>
+                    <th scope="row" class="table-info">Productora</th>
+                <td>@Model.Prod</td>
+            </tr>
+            <tr>
+                <th scope="row">Info</th>
+                    <td class="table-info">@Model.Info</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-warning">Volver atras</a>
+</div>
+
+

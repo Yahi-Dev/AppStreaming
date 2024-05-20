@@ -1,0 +1,55 @@
+﻿@model List<Application.ViewModels.ProductoraViewModel>
+@{
+    ViewData["Title"] = "Productora";
+}
+
+<div class="container-fluid">
+
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Streaming" asp-action="CreateProd" class="btn btn-outline-success">
+                <img src="~/Image/agregar.png" width="13" height="13" /> Crear nuevo contenido
+            </a>
+        </div>
+    </div>
+    @if (Model == null || Model.Count == 0)
+    {
+        <h2>No hay ninguna productora creado</h2>
+        <div class="card-body" style="margin-top: 50px">
+            <img src="~/Image/navegador.png" width="200" height="200" />
+        </div>
+    }
+    else
+    {
+        <div class="card-body">
+            <div class="row">
+                @foreach (Application.ViewModels.ProductoraViewModel item in Model)
+                {
+                    <div class="col-4 mb-3">
+                        <div class="card shadow-sm">
+                            <img class="img-product-size bd-placeholder-img card-img-top" src="@item.ImageProd" width="150" height="200" />
+                            <div class="card-body">
+                                <h6>@item.Nombre</h6>
+                                <br />
+                                <div class="d-inline-block mx-5">
+                                    <h6>País</h6>
+                                    <small class="fw-bold">@item.Pais</small>
+                                </div>
+                                <div class="d-inline-block mx-5">
+                                    <h6>Año de fundación</h6>
+                                    <small class="fw-bold">@item.AnioFundacion</small>
+                                </div>
+                            </div>
+                            <div class="btn-group" style="margin-top: 10px">
+                                <a asp-controller="Streaming" asp-action="EditProd" asp-route-id="@item.ProductoraId" class="btn btn-sm btn-outline-primary" style="padding-right: 10px;"><img src="~/Image/editar.png" width="13" height="13" />Editar</a>
+                                <a asp-controller="Streaming" asp-action="DeleteProd" asp-route-id="@item.ProductoraId" class="btn btn-sm btn-outline-danger" style="padding-right: 10px;"><img src="~/Image/eliminar.png" width="13" height="13" />Borrar</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+

@@ -1,0 +1,164 @@
+﻿@model Application.ViewModels.SaveSeriesViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "SaveSeries";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="card">
+
+                <div class="card-header bg-dark text-light">
+
+                    <h4>
+                        @(editMode ? $"Editando el contenido: {Model.Title}" : "Creando un nuevo producto")
+                    </h4>
+                    <div class="card-body">
+
+                        <form method="post" asp-controller="Streaming" asp-action="@(editMode ? "EditSeries" : "CreateSeries")"> 
+
+                            <div class="mb-3">
+                                <label asp-for="Title" class="form-label">Title del contenido</label>
+                                <input type="text" asp-for="Title" class="form-control" placeholder="Introduce el titulo"/>
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+                            
+                            <div class="mb-3">
+                                <label asp-for="DescriptionBreve" class="form-label">Descripcion breve del contenido</label>
+                                <textarea asp-for="DescriptionBreve" class="form-control" placeholder="Introduce una info breve para previsualizacion desde afuera del contenido."></textarea>
+                                <span asp-validation-for="DescriptionBreve" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Info" class="form-label">Info del contenido</label>
+                                <textarea asp-for="Info" class="form-control" placeholder="Introduce una info detallada..."></textarea>
+                                <span asp-validation-for="Info" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="FechaSalida" class="form-label">Fecha de publicacion</label>
+                                <input type="number" max="2025" min="1930" value="1930" asp-for="FechaSalida" class="form-control" placeholder="Introduce el año de salida" />
+                                <span asp-validation-for="FechaSalida" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="ImagePortada" class="form-label">URL de la Imagen</label>
+                                <input type="text" asp-for="ImagePortada" class="form-control" placeholder="URL..." />
+                                <span asp-validation-for="ImagePortada" class="text-danger"></span>
+                            </div>
+
+                             <div class="mb-3">
+                                <label asp-for="VideoSerie" class="form-label">URL del contenido</label>
+                                <input type="text" asp-for="VideoSerie" class="form-control" placeholder="URL..." />
+                                <span asp-validation-for="VideoSerie" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                @if(string.IsNullOrWhiteSpace(Model.ModeSerie))
+                                {
+                                    <label asp-for="ModeSerie" class="form-label">Categoria del contenido</label>
+                                    <select asp-for="ModeSerie" class="form-select">
+                                        <option value="">Seleccione una opcion</option>
+                                        <option value="Serie">Serie</option>
+                                        <option value="Pelicula">Pelicula</option>
+                                    </select>
+                                    <span asp-validation-for="ModeSerie" class="text-danger"></span>
+                                }
+                                else
+                                {
+                                    <label asp-for="ModeSerie" class="form-label">Categoria del contenido</label>
+                                    <select asp-for="ModeSerie" class="form-select">
+                                        <option value="">@Model.ModeSerie</option>
+                                        <option value="Serie">Serie</option>
+                                        <option value="Pelicula">Pelicula</option>
+                                    </select>
+                                      <span asp-validation-for="ModeSerie" class="text-danger"></span>
+                                }
+                                
+                            </div>
+
+                            <div class="mb-3">
+                                    <label asp-for="ProdId" class="form-label">Categoria de Productoras</label>
+                                    <select asp-for="ProdId" class="form-select">
+                                        <option value="">Seleccione una opcion</option>
+                                        @foreach (var p in Model.ListProductoras)
+                                        {
+                                            if (p.Id == Model.ProdId)
+                                            {
+                                                <option value="@p.Id" selected>@Html.Raw(p.Nombre)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@p.Id">@Html.Raw(p.Nombre)</option>
+                                            }
+                                        }
+                                    </select>
+                                       <span asp-validation-for="ProdId" class="text-danger"></span>
+                                
+                            </div>
+
+                            
+                            <div class="mb-3">
+
+                                        <label asp-for="GenId1" class="form-label">Categoria de Generos</label>
+                                       <select asp-for="GenId1" class="form-select">
+                                        <option value="">Seleccione una opcion</option>
+                                        @foreach (var g in Model.ListGeneros)
+                                        {
+                                            if(g.Id == Model.GenId1 )
+                                            {
+                                                <option value="@g.Id" selected>@Html.Raw(@g.Nombre)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@g.Id">@Html.Raw(@g.Nombre)</option>
+                                            }
+                                        }
+                                       </select>
+                                   <span asp-validation-for="GenId1" class="text-danger"></span>
+                                    
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label asp-for="GenId2" class="form-label">Categoria del 2do Generos</label>
+                                <select asp-for="GenId2" class="form-select">
+                                    <option value="">Seleccione una opcion</option>
+                                    @foreach (var g in Model.ListGeneros)
+                                    {
+                                        if (g.Id == Model.GenId2)
+                                        {
+                                            <option value="@g.Id" selected>@Html.Raw(@g.Nombre)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@g.Id">@Html.Raw(@g.Nombre)</option>
+                                        }
+                                    }
+                                </select>
+
+                            </div>
+                            <input type="hidden" value="@Model.ListProductoras" asp-for="ListProductoras"/>
+                            <input type="hidden" value="@Model.ListGeneros" asp-for="ListGeneros" />
+                            <input type="hidden" asp-for="Id" />
+
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Streaming" asp-action="Series"class="btn btn-warning">Volver atras</a>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

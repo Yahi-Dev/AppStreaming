@@ -1,0 +1,110 @@
+﻿@using Application.ViewModels;
+@model List<Application.ViewModels.SeriesViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-light">
+                    <h4>Filtros Productora</h4>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Productora</h4>
+                    <form method="post" asp-controller="Home" asp-action="Index">
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" value="null" type="radio" name="ProductoraId" id="productora-all" />
+                                <label class="form-check-label" for="productora-all">Todas</label>
+                            </div>
+                        </div>
+                        @foreach (ProductoraViewModel prod in ViewBag.Productora)
+                        {
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" value="@prod.ProductoraId" type="radio" name="ProductoraId" id="productora-@prod.ProductoraId" />
+                                    <label class="form-check-label" for="productora-@prod.ProductoraId">@prod.Nombre</label>
+                                </div>
+                            </div>
+                        }
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card shadow-sm mt-3">
+                <div class="card-header bg-success text-light">
+                    <h4>Filtros Géneros</h4>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Géneros</h4>
+                    <form method="post" asp-controller="Home" asp-action="Index">
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" value="null" type="radio" name="GeneroId" id="genero-all" />
+                                <label class="form-check-label" for="genero-all">Todas</label>
+                            </div>
+                        </div>
+
+                        @foreach (GeneroViewModel gen in ViewBag.Genero)
+                        {
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" value="@gen.GeneroId" type="radio" name="GeneroId" id="genero-@gen.GeneroId" />
+                                    <label class="form-check-label" for="genero-@gen.GeneroId">@gen.Name</label>
+                                </div>
+                            </div>
+                        }
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            @if (Model == null || Model.Count == 0)
+            {
+                <h2>No hay nada para ver</h2>
+                <div class="card-body" style="margin-left: 50px">
+                    <img src="~/Image/navegador.png" width="200" height="200" />
+                </div>
+            }
+            else
+            {
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (Application.ViewModels.SeriesViewModel item in Model)
+                        {
+                            <div class="col-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <img class="img-product-size bd-placeholder-img card-img-top" src="@item.ImagePath" width="150" height="200" />
+                                    <div class="card-body">
+                                        <h6>@item.Name</h6>
+                                        <p class="card-text">@item.DescriptionBreve</p>
+                                        <div class="d-flex">
+                                            <div class="d-inline-block">
+                                                <h6>Género</h6>
+                                                <small class="fw-bold"> <button type="button" class="btn btn-outline-danger" disabled data-bs-toggle="button">@item.Genero1</button></small>
+                                                <small class="fw-bold"> <button type="button" class="btn btn-outline-success" disabled data-bs-toggle="button">@item.Genero2</button></small>
+                                            </div>
+                                            <div class="d-inline-block mx-5">
+                                                <h6>Productora</h6>
+                                                <small class="fw-bold"> <button type="button" class="btn btn-outline-warning" disabled data-bs-toggle="button">@item.Productora</button></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group" style="margin-top: 10px">
+                                        <a asp-controller="Streaming" asp-action="ViewContenido" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info" style="padding-right: 10px;"><img src="~/Image/boton-de-play.png" width="13" height="13" /> Ver</a>
+                                        <a asp-controller="Streaming" asp-action="ViewInfo" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning" style="padding-right: 10px;"><img src="~/Image/informacion.png" width="13" height="13" /> More Info</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

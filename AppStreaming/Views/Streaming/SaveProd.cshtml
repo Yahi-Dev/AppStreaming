@@ -1,0 +1,64 @@
+﻿@model Application.ViewModels.SaveProductoraViewModel
+@{
+    bool editMode = Model.ProductoraId == 0 ? false : true;
+    ViewData["Title"] = "SaveProd";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="card">
+
+                <div class="card-header bg-dark text-light">
+
+                    <h4>
+                        @(editMode ? $"Editando el contenido: {Model.Nombre}" : "Creando un nuevo producto")
+                    </h4>
+                    <div class="card-body">
+
+                        <form method="post" asp-controller="Streaming" asp-action="@(editMode ? "EditProd" : "CreateProd")">
+
+                            <div class="mb-3">
+                                <label asp-for="Nombre" class="form-label">Nombre de la productora</label>
+                                <input type="text" asp-for="Nombre" class="form-control" placeholder="Introduce el titulo" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="AnioFundacion" class="form-label">Año de fundacicon</label>
+                                <input type="number" max="2025" min="1920" value="1920" asp-for="AnioFundacion" class="form-control" placeholder="Año" />
+                                <span asp-validation-for="AnioFundacion" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Pais" class="form-label">Pais de origen</label>
+                                <input type="text" asp-for="Pais" class="form-control" placeholder="Pais de origen" />
+                                <span asp-validation-for="Pais" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="ImageProd" class="form-label">Imagen dela prod.</label>
+                                <input type="text" asp-for="ImageProd" class="form-control" placeholder="URL DE LA IMAGEN" />
+                                <span asp-validation-for="ImageProd" class="text-danger"></span>
+                            </div>
+                            <input type="hidden" asp-for="ProductoraId" />
+
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Streaming" asp-action="Productora" class="btn btn-warning">Volver atras</a>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+

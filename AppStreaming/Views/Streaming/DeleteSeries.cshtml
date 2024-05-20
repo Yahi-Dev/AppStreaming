@@ -1,0 +1,22 @@
+﻿@model Application.ViewModels.SaveSeriesViewModel
+@{
+    ViewData["Title"] = "DeleteSeries";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-danger text-light">
+                <h4>¿Está seguro que desea eliminar el contenido?<img style="padding-left: 10px;" src="~/Image/eliminar.png" width="25" height="25" /></h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Streaming" asp-action="DeleteSeriesPost">
+                    <input type="hidden" asp-for="Id" />
+
+                    <button type="submit" class="btn btn-danger" style="padding-right: 10px;"><img src="~/Image/eliminar.png" width="13" height="13" />  Eliminar</button>
+                    <a asp-controller="Streaming" asp-action="Series" class="btn btn-warning">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

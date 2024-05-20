@@ -1,0 +1,55 @@
+﻿@model List<Application.ViewModels.SeriesViewModel>
+
+@{
+    ViewData["Title"] = "Series";
+}
+
+<div class="container-fluid">
+
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Streaming" asp-action="CreateSeries" class="btn btn-outline-success">
+                <img src="~/Image/agregar.png" width="13" height="13"/> Crear nuevo contenido
+            </a>
+        </div>
+    </div>
+    @if (Model == null || Model.Count == 0)
+    {
+        <h2>No hay contenido disponible</h2>
+    }
+    else
+    {
+        <div class="card-body">
+            <div class="row">
+                @foreach (Application.ViewModels.SeriesViewModel item in Model)
+                {
+                    <div class="col-4 mb-3">
+                        <div class="card shadow-sm">
+                            <img class="img-product-size bd-placeholder-img card-img-top" src="@item.ImagePath" width="150" height="200" />
+                            <div class="card-body">
+                                <h6>@item.Name</h6>
+                                <p class="card-text">@item.DescriptionBreve</p>
+                                <div class="d-flex">
+                                    <div class="d-inline-block">
+                                        <h6>Genero</h6>
+                                        <small class="fw-bold"> <button type="button" class="btn btn-outline-danger" disabled data-bs-toggle="button">@item.Genero1</button></small>
+                                        <small class="fw-bold"> <button type="button" class="btn btn-outline-success" disabled data-bs-toggle="button">@item.Genero2</button></small>
+                                    </div>
+                                    <div class="d-inline-block mx-5">
+                                        <h6>Productora</h6>
+                                        <small class="fw-bold"> <button type="button" class="btn btn-outline-warning" disabled data-bs-toggle="button">@item.Productora</button></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-group" style="margin-top: 10px">
+                                <a asp-controller="Streaming" asp-action="EditSeries" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success" style="padding-right: 10px;"><img src="~/Image/editar.png" width="13" height="13" /> Editar</a>
+                                <a asp-controller="Streaming" asp-action="DeleteSeries" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" style="padding-right: 10px;"><img src="~/Image/eliminar.png" width="13" height="13" /> Borrar</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+

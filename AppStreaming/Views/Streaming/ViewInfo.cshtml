@@ -1,0 +1,46 @@
+﻿@model Application.ViewModels.ViewContenidoViewModel
+@{
+    ViewData["Title"] = "VerInfo";
+}
+
+<div class="container-fluid">
+
+    <h3><strong>Informacion del contenido</strong></h3>
+    <div>
+        <table class="table table-bordered border-primary">
+            <thead>
+                <tr>
+                    <th scope="col">Titulo</th>
+                    <th scope="col" class="table-info">@Model.Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="table-info">Contenido</th>
+                    <td>@Model.ModeSerie</td>
+                </tr>
+                <tr>
+                    <th scope="row">Fecha de Salida</th>
+                    <td class="table-info">@Model.FechaSalida</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="table-info">Genero primario</th>
+                    <td>@Model.Gen1</td>
+                </tr>
+                <tr>
+                    <th scope="row">Genero secundario</th>
+                    <td class="table-info">@Model.Gen2</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="table-info">Productora</th>
+                    <td>@Model.Prod</td>
+                </tr>
+                <tr>
+                    <th scope="row">Info</th>
+                    <td class="table-info">@Model.Info</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-warning">Volver atras</a>
+</div>

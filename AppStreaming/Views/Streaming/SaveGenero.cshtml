@@ -1,0 +1,50 @@
+﻿@model Application.ViewModels.SaveGeneroViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "SaveGenero";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="card">
+
+                <div class="card-header bg-dark text-light">
+
+                    <h4>
+                        @(editMode ? $"Editando el contenido: {Model.Name}" : "Creando un nuevo producto")
+                    </h4>
+                    <div class="card-body">
+
+                        <form method="post" asp-controller="Streaming" asp-action="@(editMode ? "EditGen" : "CreateGen")">
+
+                            <div class="mb-3">
+                                <label asp-for="Name" class="form-label">Title del contenido</label>
+                                <input type="text" asp-for="Name" class="form-control" placeholder="Introduce el titulo" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="ImagePath" class="form-label">URL de la Imagen</label>
+                                <input type="text" asp-for="ImagePath" class="form-control" placeholder="URL..." />
+                                <span asp-validation-for="ImagePath" class="text-danger"></span>
+                            </div>
+                            <input type="hidden" asp-for="Id" />
+
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Streaming" asp-action="Generos" class="btn btn-warning">Volver atras</a>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

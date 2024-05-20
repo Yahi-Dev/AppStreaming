@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppStreaming", "AppStreaming.csproj", "{9816FB0F-03CC-480A-A7D9-31D2B5760CC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBase", "..\Class\DataBase.csproj", "{4F573F61-DAB8-4D6D-AAEE-3E96EAF26E76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "..\Application\Application.csproj", "{316DFAA9-BEFF-4B54-80BB-E678EB1C9160}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9816FB0F-03CC-480A-A7D9-31D2B5760CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9816FB0F-03CC-480A-A7D9-31D2B5760CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9816FB0F-03CC-480A-A7D9-31D2B5760CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9816FB0F-03CC-480A-A7D9-31D2B5760CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F573F61-DAB8-4D6D-AAEE-3E96EAF26E76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F573F61-DAB8-4D6D-AAEE-3E96EAF26E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F573F61-DAB8-4D6D-AAEE-3E96EAF26E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F573F61-DAB8-4D6D-AAEE-3E96EAF26E76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{316DFAA9-BEFF-4B54-80BB-E678EB1C9160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316DFAA9-BEFF-4B54-80BB-E678EB1C9160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316DFAA9-BEFF-4B54-80BB-E678EB1C9160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316DFAA9-BEFF-4B54-80BB-E678EB1C9160}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {279B0092-2B39-4271-B208-1A07B9A88830}
+	EndGlobalSection
+EndGlobal
